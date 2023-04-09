@@ -1,89 +1,95 @@
-import React, { useEffect, useState } from "react";
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale } from "chart.js";
-import { Bar } from "react-chartjs-2";
-import axios from "axios";
+// import React, { useEffect, useState } from "react";
+// import {
+//   Chart as ChartJS, BarElement, CategoryScale, Tooltip, LinearScale,Legend} from "chart.js";
+// import { Bar } from "react-chartjs-2";
+// import axios from "axios";
 
 
-ChartJS.register(
-    BarElement,
-    CategoryScale,
-    LinearScale
+// ChartJS.register(
+//   BarElement,
+//   Tooltip,
+//   Legend,
+//     CategoryScale,
+//     LinearScale
 
-);
+// );
 
-// base url = https://api.coinranking.com/v2/coins
+// // base url = https://api.coinranking.com/v2/coins
 
-const BarChart = () => {
-    const [chart, setChart] = useState([])
+// const BarChart = ({data}) => {
+//   //   const [chart, setChart] = useState([])
     
-    var baseUrl = "https://api.coinranking.com/v2/coins?lomit=10"
-    var proxyUrl = "https://cors-anywhere.herokuapp.com/"
-    var apiKey = "coinrankingd653db2ad23e49a8da51cbd250835ccbca0306a8768362ff";
+//   //   var baseUrl = "https://api.coinranking.com/v2/coins?limit=10"
+//   //   var proxyUrl = "https://cors-anywhere.herokuapp.com/"
+//   //   var apiKey = "coinrankingd653db2ad23e49a8da51cbd250835ccbca0306a8768362ff";
 
-    useEffect(() => {
-        const fetchCoins = async () => {
-            await axios.get(`${proxyUrl}${baseUrl}`,{
-                
-            })
-                .then(res => console.log(res.data))
-            .catch(err =>console.log(err))
-      }      
-    }, [])
+//   //   useEffect(() => {
+//   //       const fetchCoins = async () => {
+//   //         await fetch(`${baseUrl}`, {
+//   //           method: "GET",
+//   //           headers: {
+//   //             "Content-Type": "applicacation/json",
+//   //             "x-access-token": `${apiKey}`,
+//   //             "Access-Control-Allow-Origin": "*",
+//   //           },
+//   //         })
+//   //           .then((res) => res.json().then((json) => {
+//   //             console.log(json)
+//   //             setChart(json.data)
+//   //           }))
+//   //           .catch((err) => console.log(err));
+//   //     }
+//   //     fetchCoins()
+//   //   }, [apiKey, baseUrl])
+  
+//   // console.log(chart);
     
-  var data = {
-    labels: ["January", "February", "march", "April", "may", "June"],
-    datasets: [
-      {
-        label: "attendence",
-        data: [98, 48, 100, 87, 65, 75],
-        backgroundColor: [
-          createColor(255),
-          createColor(255),
-          createColor(255),
-          createColor(255),
-        ],
-      },
-      {
-        label: "performance",
-        data: [86, 34, 90, 78, 54, 70],
-          backgroundColor: [
-            createColor(255),
-            createColor(255),
-          createColor(255),
-          createColor(255),
-          createColor(255)],
-      },
-    ],
-    borderWidth: 1,
-  };
+//   var chartData = {
+//     labels: data?.data?.map(x => x.name),
+//     datasets: [
+//       {
+//         label: `${chart?.cons?.length} Coins `,
+//         data: chart?.coins?.map(x => x.price),
+//         backgroundColor: [
+//           createColor(255),
+//           createColor(255),
+//           createColor(255),
+//           createColor(255),
+//         ],
+//       }
+     
+//     ],
+//     borderWidth: 2,
+//   };
 
-  var options = {
-    maintainAspectRation: false,
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-    legend: {
-      labels: {
-        fontSize: 26,
-      },
-    },
-  };
+//   var options = {
+//     maintainAspectRation: false,
+//     scales: {
+//       y: {
+//         beginAtZero: false,
+//       },
+//     },
+//     legend: {
+//       labels: {
+//         fontSize: 26,
+//       },
+//     },
+//   };
 
-  function random(num) {
-    return Math.floor(Math.random() * num);
-  }
+//   function random(num) {
+//     return Math.floor(Math.random() * num);
+//   }
 
-  function createColor(num) {
-    return `rgba(${random(255)},${random(255)},${random(255)},1.8)`;
-  }
+//   function createColor(num) {
+//     return `rgba(${random(255)},${random(255)},${random(255)},1.8)`;
+//   }
 
-  return (
-    <div>
-      <Bar data={data} options={options} height={80} />
-    </div>
-  );
-};
+//   return (
+//     <div style={{ "width": "70%" }}>
+//       <h1>Bar Chart</h1>
+//       <Bar data={data} options={options} height={80} />
+//     </div>
+//   );
+// };
 
-export default BarChart;
+// export default BarChart;

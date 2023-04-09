@@ -10,16 +10,20 @@ app.use(cors())
 
 app.use(express.json())
 
+//Home Page
 app.get("/", (req, res) => {
     res.send("Dashboard")
 })
 
-app.use("/datas",dataRouter)
+//Data Route
+app.use("/api",dataRouter)
 
-app.listen(process.env.port, async () => {
+app.listen(process.env.PORT, async () => {
     try {
         await connection
-        console.log({Success:'Connected To Database'})
+        console.log({
+          Success: `Connected To Database running on ${process.env.PORT}`,
+        });
     } catch (err) {
         console.log(err)
         console.log({ Failure: "Not Connected to DB" });
