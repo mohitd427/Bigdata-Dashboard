@@ -12,7 +12,7 @@ dataRouter.get("/data", async (req, res) => {
     const search = req.query.search || "";
     // let sort = req.query.sort || "";
 
-    // req.query.sort ? sort.query.split(" ") : (sort = [sort]);
+    // req.query.sort ? sort.query.split(",") : (sort = [sort]);
 
     // let sortBy = {};
     // if (sort[1]) sortBy[sort[0]] = sort[1];

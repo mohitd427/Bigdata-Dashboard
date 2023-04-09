@@ -12,80 +12,59 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 // base url = https://api.coinranking.com/v2/coins
 
-const DoughnutChart = () => {
-  const [chart, setChart] = useState([]);
+const DoughnutChart = ({labels,values}) => {
+ 
+   var chartData = {
+     labels: labels,
+     datasets: [
+       {
+         label: "Sectors",
+         data: values,
+         backgroundColor: [
+           createColor(255),
+           "#FF6384",
+           "#36A2EB",
+           "#FFCE56",
+           "#66BB6A",
+           "#9575CD",
+           "#FF8A65",
+           "#BA68C8",
+           "#FFD54F",
+           "#B2EBF2",
+           "#80CBC4",
+         ],
+       },
+     ],
+     borderWidth: 1,
+   };
 
-  var baseUrl = "https://api.coinranking.com/v2/coins?limit=10";
-  var proxyUrl = "https://cors-anywhere.herokuapp.com/";
-  var apiKey = "coinrankingd653db2ad23e49a8da51cbd250835ccbca0306a8768362ff";
+   var options = {
+     maintainAspectRation: false,
+     scales: {
+       y: {
+         beginAtZero: false,
+       },
+     },
+     legend: {
+       labels: {
+         fontSize: 26,
+       },
+     },
+   };
 
-  useEffect(() => {
-    const fetchCoins = async () => {
-      await fetch(`${baseUrl}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "applicacation/json",
-          "x-access-token": `${apiKey}`,
-          "Access-Control-Allow-Origin": "*",
-        },
-      })
-        .then((res) =>
-          res.json().then((json) => {
-            console.log(json);
-            setChart(json.data);
-          })
-        )
-        .catch((err) => console.log(err));
-    };
-    fetchCoins();
-  }, [apiKey, baseUrl]);
+   function random(num) {
+     return Math.floor(Math.random() * num);
+   }
 
-  console.log(chart);
+   function createColor(num) {
+     return `rgb(${random(255)},${random(255)},${random(255)})`;
+   }
 
-  var data = {
-    labels: chart?.coins?.map((x) => x.name),
-    datasets: [
-      {
-        label: `${chart?.cons?.length} Coins `,
-        data: chart?.coins?.map((x) => x.price),
-        backgroundColor: [
-          createColor(255),
-          createColor(255),
-          createColor(255),
-          createColor(255),
-        ],
-      },
-    ],
-    borderWidth: 2,
-  };
-
-  var options = {
-    maintainAspectRation: false,
-    scales: {
-      y: {
-        beginAtZero: false,
-      },
-    },
-    legend: {
-      labels: {
-        fontSize: 26,
-      },
-    },
-  };
-
-  function random(num) {
-    return Math.floor(Math.random() * num);
-  }
-
-  function createColor(num) {
-    return `rgba(${random(255)},${random(255)},${random(255)},.8)`;
-  }
 
   return (
-    <div style={{ width: "50%" }}>
-      <h1>Doughnut Chart</h1>
+    <div >     
 
-      <Doughnut data={data} options={options} height={50} radius={"50%"} />
+      <Doughnut data={chartData} options={options} />
     </div>
   );
 };
