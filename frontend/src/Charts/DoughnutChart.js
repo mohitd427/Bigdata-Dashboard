@@ -7,6 +7,7 @@ import {
 } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import axios from "axios";
+import { Box } from "@chakra-ui/react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -62,10 +63,10 @@ const DoughnutChart = ({labels,values}) => {
 
 
   return (
-    <div >     
+    <Box bg='white' borderRadius={'20px'} >     
 
       <Doughnut data={chartData} options={options} />
-    </div>
+    </Box>
   );
 };
 

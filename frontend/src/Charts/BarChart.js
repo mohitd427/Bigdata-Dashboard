@@ -17,7 +17,7 @@ ChartJS.register(BarElement, Tooltip, Legend, CategoryScale, LinearScale);
 
 const BarChart = ({ data }) => {
  
-
+//Intensity
   var chartData = {
     labels: data?.data?.map((x) => x.sector),
     datasets: [
@@ -53,9 +53,12 @@ const BarChart = ({ data }) => {
   }
 
   return (
-    <Box w={"auto"} border={"1px solid teal"} >
+    <>
+    <Box w={"auto"} border={"1px solid teal"} bg={"white"} borderRadius='20px'>
       <Bar data={chartData} options={options} />
     </Box>
+     
+    </>
   );
 };
 

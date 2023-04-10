@@ -73,7 +73,7 @@ const LineChart = ({ data }) => {
   }
 
   return (
-    <Box w={'auto'} border={"1px solid teal"}>
+    <Box w={"auto"} border={"1px solid teal"} bg="white" borderRadius={"20px"}>
       <Line data={LineData} options={options} />
     </Box>
   );
