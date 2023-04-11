@@ -32,11 +32,12 @@ const Dashboard = () => {
     country: "",
     city: "",
   });
-  // let URL = `https://bigdata-dashboard-production.up.railway.app/api/data?page=1&limit=100`;
+  
+  let URL = `https://bigdata-dashboard-production.up.railway.app`;
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5500/api/data?page=1&limit=100`)
+      .get(`${URL}/api/data?page=1&limit=100`)
       .then((res) => {
         console.log(res.data);
         setData(res.data);
