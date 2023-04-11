@@ -1,6 +1,7 @@
 # Bigdata-Dashboard
 <h1>Layout Of the Big Data</h1>
-![Screenshot (405)](https://user-images.githubusercontent.com/107741808/231291934-bb100f06-ee71-4b81-bd5c-7e40b00defa6.png)
+![Screenshot (405)](https://user-images.githubusercontent.com/107741808/231292437-1a34d09b-8c82-416e-87e9-2184fc4eca3d.png)
+
 
 <h1>Layout Of the Big Data Dashboard</h1>
 
