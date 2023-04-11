@@ -43,7 +43,7 @@ const Dashboard = () => {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, [filters]);
+  }, []);
 
   const handleFilterChange = (event) => {
     const name = event.target.name;
@@ -141,11 +141,11 @@ const Dashboard = () => {
         display={"flex"}
         alignItems="center"
         justifyContent={"center"}
-        gap="20px"
+        gap="10px"
         w={"full"}
         h="80px"
         bg={"gray.400"}
-        fontSize='xl'
+        fontSize=''
         fontWeight={'bold'}
       >
         <label>
