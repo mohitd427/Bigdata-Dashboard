@@ -10,7 +10,6 @@ import {
   LinearScale,
   Legend,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
 import BarChart from "../Charts/BarChart";
 import LineChart from "../Charts/LineChart";
 import DoughnutChart from "../Charts/DoughnutChart";
@@ -22,19 +21,92 @@ ChartJS.register(BarElement, Tooltip, Legend, CategoryScale, LinearScale);
 
 const Dashboard = () => {
   const [data, setData] = useState("");
+  const [filters, setFilters] = useState({
+    endYear: "",
+    topics: [],
+    sector: "",
+    region: "",
+    pest: "",
+    source: "",
+    swot: "",
+    country: "",
+    city: "",
+  });
+  // let URL = `https://bigdata-dashboard-production.up.railway.app/api/data?page=1&limit=100`;
 
-  //get data from db
   useEffect(() => {
     axios
-      .get(
-        `https://bigdata-dashboard-production.up.railway.app/api/data?page=1&limit=100`
-      )
+      .get(`http://localhost:5500/api/data?page=1&limit=100`)
       .then((res) => {
         console.log(res.data);
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [filters]);
+
+  const handleFilterChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
+
+    // Filter the chart data based on the current filters
+    const filteredData = data?.data?.filter((item) => {
+      // Check the end year filter
+      if (filters.endYear && item.endYear !== filters.endYear) {
+        return false;
+      }
+
+      // Check the topics filter
+      if (filters.topics.length > 0 && !filters.topics.includes(item.topic)) {
+        return false;
+      }
+
+      // Check the sector filter
+      if (filters.sector && item.sector !== filters.sector) {
+        return false;
+      }
+
+      // Check the region filter
+      if (filters.region && item.region !== filters.region) {
+        return false;
+      }
+
+      // Check the PEST filter
+      if (filters.pest && item.pest !== filters.pest) {
+        return false;
+      }
+
+      // Check the source filter
+      if (filters.source && item.source !== filters.source) {
+        return false;
+      }
+
+      // Check the SWOT filter
+      if (filters.swot && item.swot !== filters.swot) {
+        return false;
+      }
+
+      // Check the country filter
+      if (filters.country && item.country !== filters.country) {
+        return false;
+      }
+
+      // Check the city filter
+      if (filters.city && item.city !== filters.city) {
+        return false;
+      }
+
+      return true;
+    });
+
+    setData(filteredData);
+  };
+
+  //get data from db
 
   //doughnut Chart
   const sectors = data?.data?.map((x) => x.sector); // get an array of sector names
@@ -64,7 +136,102 @@ const Dashboard = () => {
 
   return (
     <>
-      <Box></Box>
+      <Box
+        display={"flex"}
+        alignItems="center"
+        justifyContent={"center"}
+        gap="20px"
+        w={"full"}
+        h="80px"
+        bg={"gray.400"}
+        fontSize='xl'
+        fontWeight={'bold'}
+      >
+        <label>
+          End Year:
+          <input
+            type="text"
+            name="endYear"
+            value={filters.endYear}
+            onChange={handleFilterChange}
+          />
+        </label>
+
+        {/* Topics filter */}
+        <label>
+          Topics:
+          <select
+            name="topics"
+            value={filters.topics}
+            onChange={handleFilterChange}
+          >
+            <option value="gas">Gas</option>
+            <option value="oil">Oil</option>
+            <option value="renewables">Renewables</option>
+            {/* Add more options as needed */}
+          </select>
+        </label>
+
+        {/* Sector filter */}
+        <label>
+          Sector:
+          <select
+            name="sector"
+            value={filters.sector}
+            onChange={handleFilterChange}
+          >
+            <option value="">All</option>
+            <option value="Energy">Energy</option>
+            <option value="Agriculture">Agriculture</option>
+            {/* Add more options as needed */}
+          </select>
+        </label>
+
+        {/* Region filter */}
+        <label>
+          Region:
+          <select
+            name="region"
+            value={filters.region}
+            onChange={handleFilterChange}
+          >
+            <option value="">All</option>
+            <option value="Northern America">Northern America</option>
+            <option value="Europe">Europe</option>
+            {/* Add more options as needed */}
+          </select>
+        </label>
+
+        {/* PEST filter */}
+        <label>
+          PEST:
+          <select
+            name="pest"
+            value={filters.pest}
+            onChange={handleFilterChange}
+          >
+            <option value="">All</option>
+            <option value="Political">Political</option>
+            <option value="Economic">Economic</option>
+            {/* Add more options as needed */}
+          </select>
+        </label>
+
+        {/* Source filter */}
+        <label>
+          Source:
+          <select
+            name="source"
+            value={filters.source}
+            onChange={handleFilterChange}
+          >
+            <option value="">All</option>
+            <option value="EIA">EIA</option>
+            <option value="BP">BP</option>
+            {/* Add more options as needed */}
+          </select>
+        </label>
+      </Box>
       <Box
         display={{ lg: "grid" }}
         gap="20px"

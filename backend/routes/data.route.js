@@ -5,7 +5,7 @@ const jsonData = require("../config/jsondata.json");
 const dataRouter = express.Router();
 
 dataRouter.get("/data", async (req, res) => {
-  // const query = req.query;    
+  const query = req.query;    
   try {
     const page = parseInt(req.query.page) - 1 || 0;
     const limit = parseInt(req.query.limit) || 5;
@@ -17,10 +17,7 @@ dataRouter.get("/data", async (req, res) => {
     // let sortBy = {};
     // if (sort[1]) sortBy[sort[0]] = sort[1];
     // else sortBy[sort[0]] = "asc";
-
-    const data = await DataModel.find({
-      // name: { $regex: search },
-    })
+    const data = await DataModel.find({})
       // .sort(sortBy)
       .skip(page * limit)
       .limit(limit);
