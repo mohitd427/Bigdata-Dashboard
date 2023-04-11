@@ -1,8 +1,7 @@
 # Bigdata-Dashboard
 
-![Screenshot (405)](https://user-images.githubusercontent.com/107741808/231292437-1a34d09b-8c82-416e-87e9-2184fc4eca3d.png)
 
-<h1>HOme Page</h1>
+<h1>Home Page</h1>
 
 ![Screenshot (405)](https://user-images.githubusercontent.com/107741808/231292538-ad4dea07-6d69-47a7-878b-2a7d2b078ecc.png)
 <h1>Layout Of the Big Data Dashboard</h1>
