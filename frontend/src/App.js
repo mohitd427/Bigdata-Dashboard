@@ -1,8 +1,4 @@
-import logo from './logo.svg';
 import './App.css';
-import Dashboard from './Pages/Dashboard';
-import BarChart from './Charts/BarChart';
-import DoughnutChart from './Charts/DoughnutChart';
 import Navbar from './Components/Navbar';
 import MainRoutes from './Routes/MainRoutes';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -10,13 +6,13 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 function App() {
   return (
-    <div >
+    <div>
       <ChakraProvider>
-        
+        {/* <ColorModeSwitch /> */}
+
         <Navbar />
         <MainRoutes />
-        {/* <BarChart />
-      <DoughnutChart/> */}
+    
       </ChakraProvider>
     </div>
   );

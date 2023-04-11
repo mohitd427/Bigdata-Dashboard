@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -6,12 +6,10 @@ import {
   Legend,
 } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import axios from "axios";
 import { Box } from "@chakra-ui/react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-// base url = https://api.coinranking.com/v2/coins
 
 const DoughnutChart = ({labels,values}) => {
  

@@ -23,9 +23,12 @@ ChartJS.register(BarElement, Tooltip, Legend, CategoryScale, LinearScale);
 const Dashboard = () => {
   const [data, setData] = useState("");
 
+  //get data from db
   useEffect(() => {
     axios
-      .get(`http://localhost:5500/api/data?page=1&limit=100`)
+      .get(
+        `https://bigdata-dashboard-production.up.railway.app/api/data?page=1&limit=100`
+      )
       .then((res) => {
         console.log(res.data);
         setData(res.data);
@@ -56,14 +59,14 @@ const Dashboard = () => {
     else topicCounts[t] = 1;
   });
 
-  const PieLabels = Object.keys(topicCounts)
+  const PieLabels = Object.keys(topicCounts);
   const PieValues = Object.values(topicCounts);
 
   return (
     <>
       <Box></Box>
       <Box
-        display={"grid"}
+        display={{ lg: "grid" }}
         gap="20px"
         p="20px"
         gridTemplateColumns="repeat(2,1fr)"
